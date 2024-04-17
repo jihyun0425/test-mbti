@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+            name="description"
+            content="내 성격을 알아보는 10초 MBTI"
+    />
+    <meta name="og:image" content="./src/images/op_image.png" />
+    <title>내 성격을 알아보는 10초 MBTI</title>
+    <script src="./js/personalTest.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+<div class="personalTest_container">
+    <div class="intro_container content_container">
+        <img src="./src/images/main.jpg" alt="">
+        <h1>내 성격을 알아보는 <span class="point_text">10초 MBTI</span></h1>
+        <button class="start" type="button" data-action="start">시작하기</button>
+    </div>
+    <div class="test_container content_container">
+        <h2>
+            <span class="progress point_text">0</span>
+            <span class="question">질문</span>
+        </h2>
+        <div class="answer_container">
+            <button class="answer" type="button" data-answer="a">답변 A</button>
+            <button class="answer" type="button" data-answer="b">답변 B</button>
+        </div>
+    </div>
+    <div class="result_container content_container">
+        <h2 class="result_text">당신의 성향은 OOO입니다.</h2>
+        <h3 class="result_infor_title"></h3>
+        <ul class="result_infor"></ul>
+        <form id="info_form" style="padding: 20px;">
+            <div class="info" style="padding-bottom: 20px;">
+            <input type="text" id="name" name="name" placeholder="이름" style="padding: 10px">
+            <input type="text" id="phone" name="phone" placeholder="전화번호" style="padding: 10px">
+            </div>
+            <button type="submit" style="transform: translate(79px, 0); "> <a id="downloadLink" download="personal_info.txt" style="display: none;"></a>제출하기</button>
+        </form>
+        <button class="restart" type="button" data-action="restart" >다시하기</button>
+
+    </div>
+</div>
+
+<script>
+    const personalTest = new PersonalTest('.personalTest_container');
+</script>
+
+<script>
+
+    // 저장된 데이터를 불러오는 함수
+    function loadStoredData() {
+        const storedName = localStorage.getItem('name');
+        const storedPhone = localStorage.getItem('phone');
+
+        // 불러온 데이터를 활용하여 다른 작업 수행 가능
+        if (storedName && storedPhone) {
+            // 저장된 데이터를 사용자에게 보여줌
+            console.log(`저장된 이름: ${storedName}\n저장된 전화번호: ${storedPhone}`);
+        } else {
+            console.log('저장된 데이터가 없습니다.');
+        }
+    }
+
+    // 페이지 로드 시 저장된 데이터 불러오기
+    window.addEventListener('load', loadStoredData);
+
+    // 폼 제출 시 데이터를 로컬 스토리지에 저장하는 함수
+    function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const name = formData.get('name');
+        const phone = formData.get('phone');
+
+        // 로컬 스토리지에 저장
+        localStorage.setItem('name', name);
+        localStorage.setItem('phone', phone);
+
+        // 파일 다운로드 링크 생성
+        const data = `이름: ${name}, 전화번호: ${phone}`;
+        const file = new Blob([data], { type: 'text/plain' });
+        const downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = URL.createObjectURL(file);
+        downloadLink.style.display = 'block';
+        downloadLink.click();
+    }
+
+    // 폼 제출 이벤트 핸들러 등록
+    const infoForm = document.querySelector('#info_form');
+    infoForm.addEventListener('submit', handleFormSubmit);
+
+    // 다시하기 버튼 클릭 시 동작
+    const restartButton = document.querySelector('.restart');
+    restartButton.addEventListener('click', () => {
+        // 로컬 스토리지에서 데이터 삭제
+        localStorage.removeItem('name');
+        localStorage.removeItem('phone');
+        // 입력 필드 초기화
+        document.getElementById('name').value = '';
+        document.getElementById('phone').value = '';
+        // 파일 다운로드 링크 숨기기
+        document.getElementById('downloadLink').style.display = 'none';
+    });
+
+</script>
+</body>
+</html>
