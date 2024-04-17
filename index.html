@@ -35,12 +35,13 @@
         <h2 class="result_text">당신의 성향은 OOO입니다.</h2>
         <h3 class="result_infor_title"></h3>
         <ul class="result_infor"></ul>
-        <form id="info_form" style="padding: 20px;">
+        <form id="info_form" style="padding: 25px; transform: translate(75px, 0)">
+            <p style="font-size: 1.6rem; color: #f3ed80">please write!</p>
             <div class="info" style="padding-bottom: 20px;">
-            <input type="text" id="name" name="name" placeholder="이름" style="padding: 10px">
-            <input type="text" id="phone" name="phone" placeholder="전화번호" style="padding: 10px">
+            <input type="text" id="name" name="name" placeholder="이름" style="padding: 10px; color: black">
+            <input type="text" id="phone" name="phone" placeholder="번호" style="padding: 10px; color: black">
             </div>
-            <button type="submit" style="transform: translate(79px, 0); "> <a id="downloadLink" download="personal_info.txt" style="display: none;"></a>제출하기</button>
+            <button type="submit" > <a id="downloadLink" download="personal_info.txt" style="display: none;"></a>제출하기</button>
         </form>
         <button class="restart" type="button" data-action="restart" >다시하기</button>
 
