@@ -5,7 +5,8 @@
     margin: 0;
     padding: 0;
     font-family: inherit;
-    color: #fff;
+    font-weight: 700;
+    color: #0c0c0c;
     font-family: 'Pretendard';
 }
 
@@ -56,7 +57,7 @@ body {
 .content_container button {
     display: block;
     border: none;
-    background: rgb(145 116 83);
+    background: rgb(183, 147, 105);
     max-width: 250px;
     padding: 0 20px;
     width: 100%;
@@ -68,7 +69,7 @@ body {
 
 .content_container button:active {
     transform: scale(0.98);
-    background: rgb(112, 79, 41);
+    background: rgb(152, 108, 57);
 }
 
 
@@ -89,7 +90,7 @@ body {
 }
 
 .point_text {
-    color: rgb(248, 193, 129);
+    color: rgb(234, 133, 16);
     font-weight: 600;
 }
 
@@ -134,4 +135,5 @@ body {
 .result_infor li + li {
     margin-top: 10px;
 }
+
 

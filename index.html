@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<div class="personalTest_container">
+<div class="personalTest_container" style="background: url('./src/images/bg.png') center no-repeat">
     <div class="intro_container content_container">
         <img src="./src/images/main.jpg" alt="">
         <h1>내 성격을 알아보는 <span class="point_text">10초 MBTI</span></h1>
@@ -35,15 +35,18 @@
         <h2 class="result_text">당신의 성향은 OOO입니다.</h2>
         <h3 class="result_infor_title"></h3>
         <ul class="result_infor"></ul>
-        <button class="restart" type="button" data-action="restart">다시하기</button>
+        <button class="restart" type="button" data-action="restart" style="margin-bottom: 30px;">다시하기</button>
 
-        <form id="info_form" style="padding: 40px 10px 25px 10px;">
-        <p style="font-size: 1.6rem; color: #f3ed80">please write!</p>
-        <div class="info" style="padding-bottom: 20px;">
-            <input type="text" id="name" name="name" placeholder="이름" style="padding: 10px; color: black">
-            <input type="text" id="phone" name="phone" placeholder="번호" style="padding: 10px; color: black">
+        <form id="info_form" style="display: flex; flex-direction: column; align-items: center">
+        <p style="font-size: 0.8rem; color: #ee7227">더 많은 정보를 얻을 수 있어요😊</p>
+        <div class="info" style="padding-bottom: 20px; display: flex; flex-direction: column; align-items: center;">
+            <input type="text" id="name" name="name" placeholder="이름" style="padding: 10px; color: black; margin-bottom: 10px;">
+            <input type="text" id="phone" name="phone" placeholder="번호" style="padding: 10px; color: black; margin-bottom: 10px;">
         </div>
-        <button type="submit" >제출하기</button>
+        <button type="submit" style="padding: 10px 20px; background-color: #ef6532;
+                                     border: none; cursor: pointer; font-size: 1rem;
+                                     border-radius: 5px; color: #fff;" >
+            제출하기</button>
         </form>
     </div>
 
