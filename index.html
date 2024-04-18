@@ -35,18 +35,22 @@
         <h2 class="result_text">당신의 성향은 OOO입니다.</h2>
         <h3 class="result_infor_title"></h3>
         <ul class="result_infor"></ul>
+        <button class="restart" type="button" data-action="restart">다시하기</button>
+
         <form id="info_form" style="padding: 40px 10px 25px 10px;">
-            <p style="font-size: 1.6rem; color: #f3ed80">please write!</p>
-            <div class="info" style="padding-bottom: 20px;">
+        <p style="font-size: 1.6rem; color: #f3ed80">please write!</p>
+        <div class="info" style="padding-bottom: 20px;">
             <input type="text" id="name" name="name" placeholder="이름" style="padding: 10px; color: black">
             <input type="text" id="phone" name="phone" placeholder="번호" style="padding: 10px; color: black">
-            </div>
-            <button type="submit" > <a id="downloadLink" download="personal_info.txt" style="display: none;"></a>제출하기</button>
+        </div>
+        <button type="submit" >제출하기</button>
         </form>
-        <button class="restart" type="button" data-action="restart" style="display: none" >다시하기</button>
-
     </div>
+
+
 </div>
+
+
 
 <script>
     const personalTest = new PersonalTest('.personalTest_container');
@@ -86,10 +90,12 @@
         // 파일 다운로드 링크 생성
         const data = `이름: ${name}, 전화번호: ${phone}`;
         const file = new Blob([data], { type: 'text/plain' });
-        const downloadLink = document.getElementById('downloadLink');
+        const downloadLink = document.createElement('a'); // <a> 엘리먼트 생성
         downloadLink.href = URL.createObjectURL(file);
-        downloadLink.style.display = 'block';
-        downloadLink.click();
+        downloadLink.download = 'personal_info.txt'; // 파일 다운로드 시 파일명 지정
+        document.body.appendChild(downloadLink); // <a> 엘리먼트를 body에 추가
+        downloadLink.click(); // 클릭 이벤트 발생
+        document.body.removeChild(downloadLink); // <a> 엘리먼트 제거
     }
 
     // 폼 제출 이벤트 핸들러 등록
@@ -106,7 +112,11 @@
         document.getElementById('name').value = '';
         document.getElementById('phone').value = '';
         // 파일 다운로드 링크 숨기기
-        document.getElementById('downloadLink').style.display = 'none';
+        // 파일 다운로드를 위해 추가했던 <a> 엘리먼트 제거
+        const downloadLink = document.querySelector('#downloadLink');
+        if (downloadLink) {
+            document.body.removeChild(downloadLink);
+        }
     });
 
 </script>
